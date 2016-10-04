@@ -1,0 +1,26 @@
+INSERT INTO Community_Organization (Community_ID, Community_Name) VALUES ('', 'Political'), ('', 'Womens'), ('', 'Agricultural'), ('', 'Labor'), ('', 'Civic'), ('', 'Cooperatives'), ('', 'Senior Citizens'), ('', 'Others');
+
+
+INSERT INTO Nutritional_Status (Nutrition_ID, Nutrition_Description) VALUES ('0', 'Not Applicable');
+
+
+
+/Applications/xampp/bin/mysqldump -u root -p Alubijid > /Applications/xampp/Alubijid.sql
+
+
+SELECT r.Resident_ID, r.Last_Name, r.First_Name, r.Age, org.Community_Name FROM Resident as r, Community_Organization as org WHERE Age >= 10 AND r.Community_ID = org.Community_ID; 
+
+SELECT r.Resident_ID, r.Last_Name, r.First_Name, r.Age, n.Nutrition_Description FROM Resident as r, Nutritional_Status as n WHERE Age BETWEEN 0 AND 5 AND r.Nutriton_ID = n.Nutriton_ID; 
+
+
+CREATE TABLE Other_Comm_Orgs(
+    Other_ID INT NOT NULL AUTO_INCREMENT,
+    Other_Name VARCHAR(50) NOT NULL,
+    PRIMARY KEY(Other_ID)
+)
+
+
+    if($result)
+        echo "<script type='text/javascript'>alert('Success!'); window.location.href = 'listRecords.php'</script>";
+    else
+        echo "<script type='text/javascript'>alert('Failed!'); window.location.href = 'listRecords.php'</script>";
