@@ -58,65 +58,58 @@
                         <h1>Records</h1>
                  
 						<?php
-                            $id = $_POST['id'];
-                            $lastName = $_POST['lName'];
-                            $firstName = $_POST['fName'];
-                            $age = $_POST['age'];
-                            $gender = $_POST['gender'];
-
+                            $id =           $_POST['id'];
+                            $lastName =     $_POST['lName'];
+                            $firstName =    $_POST['fName'];
+                            $age =          $_POST['age'];
+                        
                             $connection = mysqli_connect('localhost', 'Issa', 'alcordo123');
                                 if ($connection->connect_errno) {
                                     echo ("SQL can't connect to PHP". $connection->connect_error);
                                     exit();
                                 }	
 
-                            $SelectDB = mysqli_select_db($connection, "friends");
+                            $SelectDB = mysqli_select_db($connection, "Alubijid");
                                 if(!$SelectDB)
                                     die("Database Selection Failed: ".mysqli_error($connection));
 
                             $where = "WHERE";
                             
                             if(!empty($id)){
-                                $where .= " id_number = $id";
+                                $where .= " resident_ID = $id";
                                 if(!empty($lastName))
-                                    $where .= " AND lastname LIKE '%$lastName%'";
+                                    $where .= " AND Last_name LIKE '%$lastName%'";
                                 if(!empty($firstName))
-                                    $where .= " AND firstname LIKE '%$firstName%'";
+                                    $where .= " AND First_name LIKE '%$firstName%'";
                                 if(!empty($age))
-                                    $where .= " AND age = $age";
-                                if($gender != 'N')
-                                    $where .= " AND gender = '$gender'";
+                                    $where .= " AND Age = $age";
                             }
+                        
                             else if(!empty($lastName)){
-                                $where .= " lastname LIKE '%$lastName%'";
+                                $where .= " Last_name LIKE '%$lastName%'";
                                 if(!empty($firstName))
-                                    $where .= " AND firstname LIKE '%$firstName%'";
+                                    $where .= " AND First_name LIKE '%$firstName%'";
                                 if(!empty($age))
-                                    $where .= " AND age = $age";
-                                if($gender != 'N')
-                                    $where .= " AND gender = '$gender'";
+                                    $where .= " AND Age = $age";
                             }
 
                             else if(!empty($firstName)){
-                                $where .= " firstname LIKE '%$firstName%'";
+                                $where .= " First_name LIKE '%$firstName%'";
                                 if(!empty($age))
-                                    $where .= " AND age = $age";
-                                if($gender != 'N')
-                                    $where .= " AND gender = '$gender'";
+                                    $where .= " AND Age = $age";
                             }
                             else if(!empty($age)){
-                                $where .= " age = $age";
-                                if($gender != 'N')
-                                    $where .= " AND gender = '$gender'";
+                                $where .= " Age = $age";
                             }
-                            else if($gender!='N')
-                                $where .= " gender = '$gender'";
                         
-                            $query = "SELECT * FROM Names $where";
-
+                            $query = "SELECT  Resident_ID, Last_Name, First_Name, Age FROM Resident $where";
+                            echo($query);
+                        
                             $result = mysqli_query($connection, $query)
                                 or die ('query error');
-
+                        
+                            
+                        
                             if(!$query)
                                 echo('Error in query: ' . mysqli_error($query));
 
@@ -129,7 +122,6 @@
                                                     <th>Last Name</th>
                                                     <th>First Name</th>
                                                     <th>Age</th>
-                                                    <th>Gender</th>
                                                 </tr>
                                             </thead>";
 
@@ -139,8 +131,7 @@
                                                     <td>$row[0]</td>
                                                     <td>$row[1]</td> 
                                                     <td>$row[2]</td> 
-                                                    <td>$row[3]</td>
-                                                    <td>$row[4]</td>";
+                                                    <td>$row[3]</td>";
                                         
                                          echo' 
                                             <td id = "delete" width = 20>
@@ -159,7 +150,6 @@
                                                     <input NAME="lName"  TYPE="hidden" value="'. $row[1] .'"/>
                                                     <input NAME="fName"  TYPE="hidden" value="'. $row[2] .'"/>
                                                     <input NAME="age"    TYPE="hidden" value="'. $row[3] .'"/>
-                                                    <input NAME="gender" TYPE="hidden" value="'. $row[4] .'"/>
                                                 </form>
                                             </td>';	
                                         
