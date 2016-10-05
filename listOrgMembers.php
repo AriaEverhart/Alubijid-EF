@@ -67,7 +67,7 @@
                         
                             $OrgID = $_POST['OrgID'];
                             $OrgName = $_POST['OrgName'];
-                        
+                            
                             echo"<h1>$OrgName</h1>";
                         
                             $connection = mysqli_connect('localhost', 'root', '');
@@ -79,15 +79,22 @@
                                 $SelectDB = mysqli_select_db($connection, "Alubijid");
                                     if(!$SelectDB)
                                         die("Database Selection Failed: ".mysqli_error($connection));
-
-                                $query = "SELECT Resident_ID, Last_Name, First_Name, Age FROM Resident WHERE Community_ID = '$OrgID'";
+                                
+                                if($OrgID!=11){
+                                    $query = "SELECT Resident_ID, Last_Name, First_Name, Age FROM Resident WHERE Community_ID = '$OrgID'";
+                                    
+                                }
+                                else{
+                                    $query = "SELECT r.Resident_ID, r.Last_Name, r.First_Name, r.Age, o.Other_Name FROM Resident as r, Other_comm_orgs as o WHERE r.Other_ID = o.Other_ID";
+                                }
                                 $result = mysqli_query($connection, $query)
-                                or die ('query error');
+                                            or die ('query error');
 
-                                 if(!$query)
+                                if(!$query)
                                      ('Error in query: ' . mysqli_error($query));
-
-                                if(mysqli_num_rows ($result)>0){
+                        
+                                if($OrgID!=11){
+                                    if(mysqli_num_rows ($result)>0){
                                         echo'<div class="table-responsive">';
                                         echo'<table class="table">';
                                         echo"<thead>
@@ -99,37 +106,84 @@
                                                 </tr>
                                             </thead>";
 
-                                    while($row = mysqli_fetch_row($result)){
-                                        echo"<tbody>
-                                                <tr>
-                                                    <td>$row[0]</td>
-                                                    <td>$row[1]</td> 
-                                                    <td>$row[2]</td> 
-                                                    <td>$row[3]</td>";
-                                        
-                                        echo' 
-                                            <td id = "delete" width = 20>
-                                                <form name = "delete" action = "deleteRecord.php" method = "post">
-                                                     <button name = "delete" type="submit" value="' . $row[0] . '" class="btn btn-default btn-sm"> 
-                                                            <span class="glyphicon glyphicon-trash"></span>
-                                                     </button>
-                                                </form>
-                                            </td>
+                                        while($row = mysqli_fetch_row($result)){
+                                            echo"<tbody>
+                                                    <tr>
+                                                        <td>$row[0]</td>
+                                                        <td>$row[1]</td> 
+                                                        <td>$row[2]</td> 
+                                                        <td>$row[3]</td>";
                                             
-                                            <td id = "edit" width = 20>
-                                                <form name = "edit" action = "editValues.php" method = "post">
-                                                    <button name = "edit" type="submit" value="'. $row[0] .'" class="btn btn-default btn-sm">
-                                                            <span class="glyphicon glyphicon-edit"></span>
-                                                    </button>
-                                                </form>
-                                            </td>';	
                                         
-                                        echo"</tr>";	
-                                    }
+                                            echo' 
+                                                <td id = "delete" width = 20>
+                                                    <form name = "delete" action = "deleteRecord.php" method = "post">
+                                                         <button name = "delete" type="submit" value="' . $row[0] . '" class="btn btn-default btn-sm"> 
+                                                                <span class="glyphicon glyphicon-trash"></span>
+                                                         </button>
+                                                    </form>
+                                                </td>
 
-                                    echo"</tbody>
-                                        </table>";
+                                                <td id = "edit" width = 20>
+                                                    <form name = "edit" action = "editValues.php" method = "post">
+                                                        <button name = "edit" type="submit" value="'. $row[0] .'" class="btn btn-default btn-sm">
+                                                                <span class="glyphicon glyphicon-edit"></span>
+                                                        </button>
+                                                    </form>
+                                                </td>';	
+
+                                            echo"</tr>";
+                                        }
+                                    }
                                 }
+                                else{
+                                    if(mysqli_num_rows ($result)>0){
+                                        echo'<div class="table-responsive">';
+                                        echo'<table class="table">';
+                                        echo"<thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Last Name</th>
+                                                    <th>First Name</th>
+                                                    <th>Age</th>
+                                                    <th>Community Organization</th>
+                                                </tr>
+                                            </thead>";
+
+                                        while($row = mysqli_fetch_row($result)){
+                                            echo"<tbody>
+                                                    <tr>
+                                                        <td>$row[0]</td>
+                                                        <td>$row[1]</td> 
+                                                        <td>$row[2]</td> 
+                                                        <td>$row[3]</td>
+                                                        <td>$row[4]</td>";
+                                            
+                                        
+                                            echo' 
+                                                <td id = "delete" width = 20>
+                                                    <form name = "delete" action = "deleteRecord.php" method = "post">
+                                                         <button name = "delete" type="submit" value="' . $row[0] . '" class="btn btn-default btn-sm"> 
+                                                                <span class="glyphicon glyphicon-trash"></span>
+                                                         </button>
+                                                    </form>
+                                                </td>
+
+                                                <td id = "edit" width = 20>
+                                                    <form name = "edit" action = "editValues.php" method = "post">
+                                                        <button name = "edit" type="submit" value="'. $row[0] .'" class="btn btn-default btn-sm">
+                                                                <span class="glyphicon glyphicon-edit"></span>
+                                                        </button>
+                                                    </form>
+                                                </td>';	
+
+                                            echo"</tr>";
+                                        }
+                                    }
+                                }
+                            echo"</tbody>
+                            </table>";
+                                
 
                                 mysqli_close($connection);
                             ?>	

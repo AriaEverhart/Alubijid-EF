@@ -96,12 +96,9 @@
                                   <option value="3">Below Normal(moderate)</option>
                                   <option value="4">Below Normal(severe)</option>
                                 </select><br><br>
-                                
-                                
-                                
-                                
+
                                 Community Organization:<br>
-                                <select name="org" onchange='checkvalue(this.value)'>
+                                <select name="org">
                                   <option value="1">Religious</option>
                                   <option value="2">Youth</option>
                                   <option value="3">Cultural</option>
@@ -113,23 +110,10 @@
                                   <option value="9">Cooperatives</option>
                                   <option value="10">Senior Citizens</option>
                                   <option value="11">Other</option>
-                                </select>
-                                <input type = "text" name = "otherOrg" style='display:none'><br><br>
-                                
-                                <script type='text/javascript'>
-                                    function checkvalue(value)
-                                    {
-                                        if(value==11){
-                                            document.getElementById('otherOrg').style.display='block';
-                                            lert('Success!'); window.location.href = 'listRecords.php'
-                                        }
-                                           
-                                        else
-                                           document.getElementById('otherOrg').style.display='none'; 
-                                    }
-                                </script>
-                                
-                                
+                                </select><br>
+                            
+                                Other:<br>
+                                <input type = "text" name = "otherName"><br><br>
 								<br><br><br>
 								<input type = "submit" value = "Submit">
 								<input type = "reset">
