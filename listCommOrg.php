@@ -63,7 +63,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1>Community Organizations</h1>
+                        <h1>Other Community Organizations</h1>
                  
 						<?php
                             $connection = mysqli_connect('localhost', 'root', '');
@@ -99,6 +99,14 @@
                                                     <td>$row[0]</td>
                                                     <td>$row[1]</td>";
                                         
+                                            echo'   <td id = "show" width = 50>
+                                                        <form name = "show" action = "listOrgMembers.php" method = "post">
+                                                            <button name = "OrgID" type="submit" value="' . $row[0] . '" class="btn btn-default btn-sm"> 
+                                                                <span class="glyphicon glyphicon-th-list"></span>
+                                                            </button>
+                                                            <input type = "text" name = "OrgName" value="' . $row[1] . '" hidden>
+                                                        </form>
+                                                    </td>';
                                         echo"</tr>";	
                                     }
 

@@ -62,10 +62,14 @@
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <h1>Other Community Organizations</h1>
-                 
+                    <div class="col-lg-12">                 
 						<?php
+                        
+                            $OrgID = $_POST['OrgID'];
+                            $OrgName = $_POST['OrgName'];
+                        
+                            echo"<h1>$OrgName</h1>";
+                        
                             $connection = mysqli_connect('localhost', 'root', '');
                                 if ($connection->connect_errno) {
                                     echo ("SQL can't connect to PHP". $connection->connect_error);
@@ -76,7 +80,7 @@
                                     if(!$SelectDB)
                                         die("Database Selection Failed: ".mysqli_error($connection));
 
-                                $query = 'SELECT * FROM Community_Organization';
+                                $query = "SELECT Resident_ID, Last_Name, First_Name, Age FROM Resident WHERE Community_ID = '$OrgID'";
                                 $result = mysqli_query($connection, $query)
                                 or die ('query error');
 
@@ -89,7 +93,9 @@
                                         echo"<thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Name</th>
+                                                    <th>Last Name</th>
+                                                    <th>First Name</th>
+                                                    <th>Age</th>
                                                 </tr>
                                             </thead>";
 
@@ -97,15 +103,27 @@
                                         echo"<tbody>
                                                 <tr>
                                                     <td>$row[0]</td>
-                                                    <td>$row[1]</td>";
+                                                    <td>$row[1]</td> 
+                                                    <td>$row[2]</td> 
+                                                    <td>$row[3]</td>";
                                         
-                                            echo'   <td id = "delete" width = 50>
-                                                        <form name = "delete" action = "deleteRecord.php" method = "post">
-                                                            <button name = "delete" type="submit" value="' . $row[0] . '" class="btn btn-default btn-sm"> 
-                                                                <span class="glyphicon glyphicon-trash"></span>
-                                                            </button>
-                                                        </form>
-                                                    </td>';
+                                        echo' 
+                                            <td id = "delete" width = 20>
+                                                <form name = "delete" action = "deleteRecord.php" method = "post">
+                                                     <button name = "delete" type="submit" value="' . $row[0] . '" class="btn btn-default btn-sm"> 
+                                                            <span class="glyphicon glyphicon-trash"></span>
+                                                     </button>
+                                                </form>
+                                            </td>
+                                            
+                                            <td id = "edit" width = 20>
+                                                <form name = "edit" action = "editValues.php" method = "post">
+                                                    <button name = "edit" type="submit" value="'. $row[0] .'" class="btn btn-default btn-sm">
+                                                            <span class="glyphicon glyphicon-edit"></span>
+                                                    </button>
+                                                </form>
+                                            </td>';	
+                                        
                                         echo"</tr>";	
                                     }
 
