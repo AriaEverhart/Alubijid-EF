@@ -85,7 +85,7 @@
                                     
                                 }
                                 else{
-                                    $query = "SELECT r.Resident_ID, r.Last_Name, r.First_Name, r.Age, o.Other_Name FROM Resident as r, Other_comm_orgs as o WHERE r.Other_ID = o.Other_ID";
+                                    $query = "SELECT r.Resident_ID, r.Last_Name, r.First_Name, r.Age, o.Other_Name FROM Resident as r, Other_comm_orgs as o WHERE r.Other_ID = o.Other_ID AND r.Age>=10";
                                 }
                                 $result = mysqli_query($connection, $query)
                                             or die ('query error');

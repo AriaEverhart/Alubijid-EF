@@ -16,34 +16,28 @@
 
     $SelectDB = mysqli_select_db($connection, "Alubijid");
         if(!$SelectDB)
-            die("Database Selection Failed: ".mysqli_error($connection));                            
+            die("Database Selection Failed: ".mysqli_error($connection));
     
     if($organization==11){
-        $query = "INSERT INTO other_comm_orgs(Other_ID, Other_Name) VALUES('', '$otherName')";
-        echo($query);
+        $addOrg = "INSERT INTO other_comm_orgs(Other_ID, Other_Name) VALUES('', '$otherName')";
         echo'<br>';
-        $result = mysqli_query($connection, $query)
+        $result = mysqli_query($connection, $addOrg)
         or die ('query error');
-        
-        
-        $query ="Select Other_ID From Other_comm_orgs WHERE Other_Name = '$otherName' LIMIT 1";
-        $result = mysqli_query($connection, $query);
-        echo($query);
+
+        $addOrg ="Select Other_ID From Other_comm_orgs WHERE Other_Name = '$otherName' LIMIT 1";
+        $result = mysqli_query($connection, $addOrg);
         echo'<br>';
         $temp = mysqli_fetch_row($result);
         $otherID = $temp[0];
-        
-        
+
         $query = "INSERT INTO resident (Resident_ID, First_Name, Last_Name, Age, Registered_Voter, Voted, Nutrition_ID, Community_ID, Other_ID) VALUES ('', '$firstName', '$lastName', '$age', '$voter', '$voted', '$nutrition', '11', '$otherID')";
-        
-        echo($query);
         echo'<br>';
         $result = mysqli_query($connection, $query)
         or die ('query error');
-        
+
     }
     else{
-        $query = "INSERT INTO resident (Resident_ID, First_Name, Last_Name, Age, Registered_Voter, Voted, Nutrition_ID, Community_ID) VALUES ('', '$firstName', '$lastName', '$age', '$voter', '$voted', '$nutrition', '$organization')";
+        $query = "INSERT INTO resident (Resident_ID, First_Name, Last_Name, Age, Registered_Voter, Voted, Nutrition_ID, Community_ID) VALUES ('', '$firstName', '$lastName', '$age', '$voter', '$voted', '$nutrition' '$organization')";
         $result = mysqli_query($connection, $query)
             or die ('query error');
     }

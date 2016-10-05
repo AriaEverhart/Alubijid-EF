@@ -36,6 +36,10 @@ SELECT r.Resident_ID, r.Last_Name, r.First_Name, o.Community_Name FROM Resident 
 ukas
 INSERT INTO other_comm_orgs (Other_ID, Other_Name) VALUES ('$otherID', '$otherName')
 
+INSERT INTO Community_Organization (Community_ID, Community_Name) VALUES ('', 'None');
+
+INSERT INTO Community_Organization(Community_ID, Community_Name) VALUES ('', 'None');
+INSERT INTO Nutritional_status(Nutrition_ID, Nutrition_Description) VALUES ('', 'None');
 
 ALTER TABLE Resident
 ADD otherOrg INT(11) NOT NULL FOREIGN KEY REFERENCES Other_Comm_orgs(Other_ID);
