@@ -71,7 +71,7 @@
                     <div class="col-lg-12">
                         <h1>Add Records</h1>
                             <h6>* = required</h6><br>
-
+                        
 							<form name = "input" action = "addRecords.php" method="post">
 								Last Name:*<br>
                                 <input type = "text" name = "lName"><br><br>
@@ -96,8 +96,12 @@
                                   <option value="3">Below Normal(moderate)</option>
                                   <option value="4">Below Normal(severe)</option>
                                 </select><br><br>
+                                
+                                
+                                
+                                
                                 Community Organization:<br>
-                                <select name="org">
+                                <select name="org" onchange='checkvalue(this.value)'>
                                   <option value="1">Religious</option>
                                   <option value="2">Youth</option>
                                   <option value="3">Cultural</option>
@@ -108,8 +112,24 @@
                                   <option value="8">Civic</option>
                                   <option value="9">Cooperatives</option>
                                   <option value="10">Senior Citizens</option>
-                                  <option value="11">Others</option>
-                                </select><br>
+                                  <option value="11">Other</option>
+                                </select>
+                                <input type = "text" name = "otherOrg" style='display:none'><br><br>
+                                
+                                <script type='text/javascript'>
+                                    function checkvalue(value)
+                                    {
+                                        if(value==11){
+                                            document.getElementById('otherOrg').style.display='block';
+                                            lert('Success!'); window.location.href = 'listRecords.php'
+                                        }
+                                           
+                                        else
+                                           document.getElementById('otherOrg').style.display='none'; 
+                                    }
+                                </script>
+                                
+                                
 								<br><br><br>
 								<input type = "submit" value = "Submit">
 								<input type = "reset">
