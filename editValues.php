@@ -95,8 +95,8 @@
                             
                             while($row = mysqli_fetch_row($result)){
                                 $id      = $row[0];
-                                $lName   = $row[1];
-                                $fName   = $row[2];
+                                $fName   = $row[1];
+                                $lName   = $row[2];
                                 $age     = $row[3];
                                 $voter   = $row[4];
                                 $voted   = $row[5];
@@ -113,9 +113,9 @@
                                     <input type = "text" name = "id2" readonly="readonly" size="3" value='.$id.'>
                                     <input type = "text" name = "id" value='.$id.' hidden><br><br>
                                     Last Name:<br>
-                                    <input type = "text" name = "lName" value='.$lName.'><br><br>
+                                    <input type = "text" name = "lName" value="'.$lName.'"><br><br>
                                     First Name:<br>
-                                    <input type = "text" name = "fName" value='.$fName.'><br><br>
+                                    <input type = "text" name = "fName" value="'.$fName.'"><br><br>
                                     Age:<br>
                                     <input type = "text" name = "age"   value='.$age.'><br><br>';
                                     
@@ -318,7 +318,7 @@
                                         break;
                                 }
                                                                       
-                        echo'</select>';            
+                        echo'</select><br><br>';            
                         echo'   <button type="submit">Confirm</button>
                                 </form>';
                         ?>
