@@ -24,3 +24,44 @@ CREATE TABLE Other_Comm_Orgs(
         echo "<script type='text/javascript'>alert('Success!'); window.location.href = 'listRecords.php'</script>";
     else
         echo "<script type='text/javascript'>alert('Failed!'); window.location.href = 'listRecords.php'</script>";
+        
+        
+        
+SELECT Resident_ID, Last_Name, First_Name, Age FROM Resident WHERE Community_ID = '$OrgID'
+
+
+SELECT r.Resident_ID, r.Last_Name, r.First_Name, o.Community_Name FROM Resident as r, Community_Organization as o WHERE r.community_id = o.community_ID;
+
+/
+ukas
+INSERT INTO other_comm_orgs (Other_ID, Other_Name) VALUES ('$otherID', '$otherName')
+
+
+ALTER TABLE Resident
+ADD otherOrg INT(11) NOT NULL FOREIGN KEY REFERENCES Other_Comm_orgs(Other_ID);
+
+ALTER TABLE Resident
+ADD otherOrg INT constraint fk foreign key references other_comm_orgs(other_ID);
+
+
+
+Other_comm_Org{
+    Other_ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Other_Name VARCHAR(50) NOT NULL
+}
+
+Resident(
+     Resident_ID INT NOT NULL AUTO_INCREMENT,
+     First_Name VARCHAR(30) NOT NULL,
+     Last_Name VARCHAR(30) NOT NULL,
+     Age INT(200) ,
+     Registered_Voter VARCHAR(1) ,
+     Voted VARCHAR(1) ,
+     Nutrition_ID INT ,
+     Community_ID INT ,
+     Other_ID INT,
+     PRIMARY KEY(Resident_ID),
+     FOREIGN KEY(Nutrition_ID) REFERENCES Nutritional_Status(Nutrition_ID),
+     FOREIGN KEY(Community_ID) REFERENCES   Community_Organization(Community_ID),
+     FOREIGN KEY(Other_ID) REFERENCES Other_Comm_Orgs(Other_ID)
+);
