@@ -19,33 +19,30 @@
             die("Database Selection Failed: ".mysqli_error($connection));
     
     if($organization==11){
-        $addOrg = "INSERT INTO other_comm_orgs(Other_ID, Other_Name) VALUES('', '$otherName')";
+        $query = "INSERT INTO other_comm_orgs(Other_ID, Other_Name) VALUES('', '$otherName')";
         echo'<br>';
-        $result = mysqli_query($connection, $addOrg)
+        $result = mysqli_query($connection, $query)
         or die ('query error');
+        
+        
+        $query ="Select Other_ID From Other_comm_orgs WHERE Other_Name = '$otherName' LIMIT 1";
 
-        $addOrg ="Select Other_ID From Other_comm_orgs WHERE Other_Name = '$otherName' LIMIT 1";
-        $result = mysqli_query($connection, $addOrg);
+        $result = mysqli_query($connection, $query);
         echo'<br>';
         $temp = mysqli_fetch_row($result);
         $otherID = $temp[0];
-
         $query = "INSERT INTO resident (Resident_ID, First_Name, Last_Name, Age, Registered_Voter, Voted, Nutrition_ID, Community_ID, Other_ID) VALUES ('', '$firstName', '$lastName', '$age', '$voter', '$voted', '$nutrition', '11', '$otherID')";
         echo'<br>';
         $result = mysqli_query($connection, $query)
         or die ('query error');
-
+        
     }
     else{
-        $query = "INSERT INTO resident (Resident_ID, First_Name, Last_Name, Age, Registered_Voter, Voted, Nutrition_ID, Community_ID) VALUES ('', '$firstName', '$lastName', '$age', '$voter', '$voted', '$nutrition' '$organization')";
+        $query = "INSERT INTO resident (Resident_ID, First_Name, Last_Name, Age, Registered_Voter, Voted, Nutrition_ID, Community_ID) VALUES ('', '$firstName', '$lastName', '$age', '$voter', '$voted', '$nutrition', '$organization')";
         $result = mysqli_query($connection, $query)
             or die ('query error');
     }
-        
-    
 
-    if(!$query)
-        echo('Error in query: ' . mysqli_error($query));
 
     if($result)
         echo "<script type='text/javascript'>alert('Success!'); window.location.href = 'listRecords.php'</script>";

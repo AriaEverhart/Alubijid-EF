@@ -36,11 +36,25 @@
                     <a href="index.html">
                         Home
                     </a>
+                <li>
+                    Show Records
                 </li>
                 <li>
-                    <a href="listRecords.php">Show Records</a>
+                    <a href="listRecords.php">All</a>
+                </li>
+                <li>
+                    <a href="listVoters.php">Voters</a>
+                </li>
+                <li>
+                    <a href="listCommOrg.php">Community Organizations</a>
                 </li>
 				<li>
+                    <a href="listNutStat.php">Nutritional Status</a>
+                </li>
+                <li>
+                    Options
+                </li>
+                <li>
                     <a href="searchRecords.html">Search Records</a>
                 </li>
                 <li>

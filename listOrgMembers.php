@@ -64,7 +64,6 @@
                 <div class="row">
                     <div class="col-lg-12">                 
 						<?php
-                        
                             $OrgID = $_POST['OrgID'];
                             $OrgName = $_POST['OrgName'];
                             
@@ -79,7 +78,7 @@
                                 $SelectDB = mysqli_select_db($connection, "Alubijid");
                                     if(!$SelectDB)
                                         die("Database Selection Failed: ".mysqli_error($connection));
-                                
+                              
                                 if($OrgID!=11){
                                     $query = "SELECT Resident_ID, Last_Name, First_Name, Age FROM Resident WHERE Community_ID = '$OrgID'";
                                     
