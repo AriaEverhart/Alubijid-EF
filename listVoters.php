@@ -30,7 +30,9 @@
                         Home
                     </a>
                 <li>
-                    Show Records
+                   <font color="white">
+                    <u><b>SHOW RECORDS:</b></u>
+                </li>
                 </li>
                 <li>
                     <a href="listRecords.php">All</a>
@@ -45,7 +47,9 @@
                     <a href="listNutStat.php">Nutritional Status</a>
                 </li>
                 <li>
-                    Options
+                    <font color="white">
+                    <u><b>OPTIONS:</b></u>
+                </li>
                 </li>
                 <li>
                     <a href="searchRecords.html">Search Records</a>
@@ -60,30 +64,32 @@
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
+		<font color="black">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
                         <h1>Registered Voters</h1>
-                 
-						<?php
-                            $connection = mysqli_connect('localhost', 'root', '');
+                 <font color="white">
+						<?php 
+						
+                            $connection = mysql_connect('localhost', 'root', '');
                                 if ($connection->connect_errno) {
                                     echo ("SQL can't connect to PHP". $connection->connect_error);
                                     exit();
                                 }	
 
-                                $SelectDB = mysqli_select_db($connection, "Alubijid");
+                                $SelectDB = mysql_select_db('alubijid');
                                     if(!$SelectDB)
-                                        die("Database Selection Failed: ".mysqli_error($connection));
+                                        die("Database Selection Failed: ".mysql_error($connection));
 
                                 $query = 'SELECT Resident_ID, Last_Name, First_Name, Age, Voted FROM Resident WHERE Age >= 17 AND Registered_Voter="y"';
-                                $result = mysqli_query($connection, $query)
+                                $result = mysql_query($query)
                                 or die ('query error');
 
                                  if(!$query)
-                                     ('Error in query: ' . mysqli_error($query));
+                                     ('Error in query: ' . mysql_error($query));
 
-                                if(mysqli_num_rows ($result)>0){
+                                if(mysql_num_rows ($result)>0){
                                         echo'<div class="table-responsive">';
                                         echo'<table class="table">';
                                         echo"<thead>
@@ -96,7 +102,7 @@
                                                 </tr>
                                             </thead>";
 
-                                    while($row = mysqli_fetch_row($result)){
+                                    while($row = mysql_fetch_row($result)){
                                         echo"<tbody>
                                             <tr>
                                                 <td>$row[0]</td>
@@ -136,11 +142,13 @@
                                         </table>";
                                 }
 
-                                mysqli_close($connection);
+                                mysql_close($connection);
                             ?>	
+							</font>
                     </div>
                 </div>
             </div>
+			</font>
         </div>
         <!-- /#page-content-wrapper -->
 

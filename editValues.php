@@ -36,7 +36,10 @@
                         Home
                     </a>
                 <li>
-                    Show Records
+                    <font color="white">
+                    <u><b>SHOW RECORDS:</b></u>
+					</font>
+                </li>
                 </li>
                 <li>
                     <a href="listRecords.php">All</a>
@@ -51,7 +54,10 @@
                     <a href="listNutStat.php">Nutritional Status</a>
                 </li>
                 <li>
-                    Options
+                    <font color="white">
+                    <u><b>OPTIONS:</b></u>
+					</font>
+                </li>
                 </li>
                 <li>
                     <a href="searchRecords.html">Search Records</a>
@@ -66,6 +72,7 @@
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
+		<font color="black">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
@@ -76,24 +83,24 @@
                             $id = $_POST['edit'];
                             
                         
-                            $connection = mysqli_connect('localhost', 'root', '');
+                            $connection = mysql_connect('localhost', 'root', '');
                                 if ($connection->connect_errno) {
                                     echo ("SQL can't connect to PHP". $connection->connect_error);
                                     exit();
                                 }	
 
-                                $SelectDB = mysqli_select_db($connection, "Alubijid");
+                                $SelectDB = mysql_select_db('alubijid');
                                     if(!$SelectDB)
-                                        die("Database Selection Failed: ".mysqli_error($connection));
+                                        die("Database Selection Failed: ".mysql_error($connection));
 
                                 $query = "SELECT * FROM Resident WHERE Resident_ID = '$id'";
-                                $result = mysqli_query($connection, $query)
+                                $result = mysql_query($query)
                                 or die ('query error');
 
                                  if(!$query)
-                                     ('Error in query: ' . mysqli_error($query));
+                                     ('Error in query: ' . mysql_error($query));
                             
-                            while($row = mysqli_fetch_row($result)){
+                            while($row = mysql_fetch_row($result)){
                                 $id      = $row[0];
                                 $fName   = $row[1];
                                 $lName   = $row[2];
@@ -328,6 +335,7 @@
                     </div>
                 </div>
             </div>
+			</font>
         </div>
         <!-- /#page-content-wrapper -->
 

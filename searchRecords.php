@@ -63,15 +63,15 @@
                             $firstName =    $_POST['fName'];
                             $age =          $_POST['age'];
                         
-                            $connection = mysqli_connect('localhost', 'root', '');
+                            $connection = mysql_connect('localhost', 'root', '');
                                 if ($connection->connect_errno) {
                                     echo ("SQL can't connect to PHP". $connection->connect_error);
                                     exit();
                                 }	
 
-                            $SelectDB = mysqli_select_db($connection, "Alubijid");
+                            $SelectDB = mysql_select_db('alubijid');
                                 if(!$SelectDB)
-                                    die("Database Selection Failed: ".mysqli_error($connection));
+                                    die("Database Selection Failed: ".mysql_error($connection));
 
                             $where = "WHERE";
                             
@@ -105,15 +105,15 @@
                             $query = "SELECT  Resident_ID, Last_Name, First_Name, Age FROM Resident $where";
                             echo($query);
                         
-                            $result = mysqli_query($connection, $query)
+                            $result = mysql_query($query)
                                 or die ('query error');
                         
                             
                         
                             if(!$query)
-                                echo('Error in query: ' . mysqli_error($query));
+                                echo('Error in query: ' . mysql_error($query));
 
-                            if(mysqli_num_rows ($result)>0){
+                            if(mysql_num_rows ($result)>0){
                                         echo'<div class="table-responsive">';
                                         echo'<table class="table">';
                                         echo"<thead>
@@ -125,7 +125,7 @@
                                                 </tr>
                                             </thead>";
 
-                                    while($row = mysqli_fetch_row($result)){
+                                    while($row = mysql_fetch_row($result)){
                                         echo"<tbody>
                                                 <tr>
                                                     <td>$row[0]</td>
@@ -162,7 +162,7 @@
                         else
                             echo("No match found");
 
-                            mysqli_close($connection);
+                            mysql_close($connection);
 
                         ?>
                         <br><br>

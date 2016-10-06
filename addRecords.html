@@ -36,7 +36,9 @@
                         Home
                     </a>
                 <li>
-                    Show Records
+                    <font color="white">
+                    <u><b>SHOW RECORDS:</b></u>
+                </li>
                 </li>
                 <li>
                     <a href="listRecords.php">All</a>
@@ -51,7 +53,9 @@
                     <a href="listNutStat.php">Nutritional Status</a>
                 </li>
                 <li>
-                    Options
+                   <font color="white">
+                    <u><b>OPTIONS:</b></u>
+                </li>
                 </li>
                 <li>
                     <a href="searchRecords.html">Search Records</a>
@@ -65,42 +69,41 @@
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
-        <div id="page-content-wrapper">
+        <div id="page-content-wrapper" style="background-image: url('img/1.jpg')" >
+		<font color="black">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1>Add Records</h1>
-                            <h6>* = required</h6><br>
+                        <h1><b><font color="white">Add Records<b></h1>
+                            <h6>* = required</h6></font><br>
                         
 							<form name = "input" action = "addRecords.php" method="post">
-								Last Name:*<br>
+								<font color="white">Last Name:*</font><br>
                                 <input type = "text" name = "lName"><br><br>
-								First Name:*<br>
+								<font color="white">First Name:*</font><br>
                                 <input type = "text" name = "fName" ><br><br>
-								Age:*<br>
+								<font color="white">Age:*</font><br>
                                 <input type = "text" name = "age" ><br><br>
                                 
 
-                                Registered Voter?:<br>
+                                <font color="white">Registered Voter?:<br>
                                 <input type="radio" name="voter" value="Y" checked="checked">Yes
-                                <input type="radio" name="voter" value="N">No<br><br>
+                                <input type="radio" name="voter" value="N">No</font><br><br>
                                 
-                                Voted Last Elections?:<br>
+                               <font color="white"> Voted Last Elections?:<br>
                                 <input type="radio" name="voted" value="Y">Yes
-                                <input type="radio" name="voted" value="N" checked="checked">No<br><br>
+                                <input type="radio" name="voted" value="N" checked="checked">No</font><br><br>
                                 
-                                Nutritional Status:<br>
+                                <font color="white">Nutritional Status:</font><br>
                                 <select name="nutrition">
-                                  <option value="5">None</option>
-                                  <option value="1">Above Normal</option>
-                                  <option value="2">Normal</option>
-                                  <option value="3">Below Normal(moderate)</option>
-                                  <option value="4">Below Normal(severe)</option>
+                                  <font color="white"><option value="1">Above Normal</font></option>
+                                  <font color="white"><option value="2">Normal</font></option>
+                                  <font color="white"><option value="3">Below Normal(moderate)</font></option>
+                                 <font color="white"> <option value="4">Below Normal(severe)</font></option>
                                 </select><br><br>
 
-                                Community Organization:<br>
+                               <font color="white"> Community Organization:</font><br>
                                 <select name="org">
-                                  <option value="12">None</option>
                                   <option value="1">Religious</option>
                                   <option value="2">Youth</option>
                                   <option value="3">Cultural</option>
@@ -114,15 +117,19 @@
                                   <option value="11">Other</option>
                                 </select><br>
                             
-                                Other:<br>
+                               <font color="white"> Other:</font><br>
                                 <input type = "text" name = "otherName"><br><br>
 								<br><br><br>
+								<font color="black">
 								<input type = "submit" value = "Submit">
 								<input type = "reset">
+								</font>
 							</form>			
                     </div>
                 </div>
             </div>
+		</font>
+		<br></br><br></br>
         </div>
         <!-- /#page-content-wrapper -->
 

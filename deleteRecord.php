@@ -2,24 +2,24 @@
                         
     $id = $_POST['delete'];
 
-    $connection = mysqli_connect('localhost', 'root', '');
+    $connection = mysql_connect('localhost', 'root', '');
         if ($connection->connect_errno) {
             echo ("SQL can't connect to PHP". $connection->connect_error);
             exit();
         }	
 
-        $SelectDB = mysqli_select_db($connection, "Alubijid");
+        $SelectDB = mysql_select_db('alubijid');
             if(!$SelectDB)
-                die("Database Selection Failed: ".mysqli_error($connection));
+                die("Database Selection Failed: ".mysql_error($connection));
 
         $query = "DELETE FROM Resident WHERE Resident_ID = $id";
-        $result = mysqli_query($connection, $query)
+        $result = mysql_query($query)
         or die ('query error');
 
          if(!$query)
-             ('Error in query: ' . mysqli_error($query));
+             ('Error in query: ' . mysql_error($query));
 
-        mysqli_close($connection);
+        mysql_close($connection);
 
     if($result)
         echo "<script type='text/javascript'>window.location.href = 'listRecords.php'</script>";

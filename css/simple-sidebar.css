@@ -71,7 +71,7 @@
 .sidebar-nav li a {
     display: block;
     text-decoration: none;
-    color: #999999;
+    color: #ffffff;
 }
 
 .sidebar-nav li a:hover {
@@ -87,12 +87,13 @@
 
 .sidebar-nav > .sidebar-brand {
     height: 65px;
-    font-size: 18px;
+    font-size: 24px;
     line-height: 60px;
+	font-weight: bolder;
 }
 
 .sidebar-nav > .sidebar-brand a {
-    color: #999999;
+    color: #ffffff;
 }
 
 .sidebar-nav > .sidebar-brand a:hover {

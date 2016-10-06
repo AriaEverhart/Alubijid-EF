@@ -30,7 +30,9 @@
                         Home
                     </a>
                 <li>
-                    Show Records
+                    <font color="white">
+                    <u><b>SHOW RECORDS:</b></u>
+                </li>
                 </li>
                 <li>
                     <a href="listRecords.php">All</a>
@@ -45,7 +47,9 @@
                     <a href="listNutStat.php">Nutritional Status</a>
                 </li>
                 <li>
-                    Options
+                    <font color="white">
+                    <u><b>OPTIONS:</b></u>
+                </li>
                 </li>
                 <li>
                     <a href="searchRecords.html">Search Records</a>
@@ -59,31 +63,32 @@
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
+        <div id="page-content-wrapper" style="background-image: url('img/6.jpg')">
+            <font color="white">
+			<div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1>Nutritional Status</h1>
+                         <h1>Nutritional Status</h1>
                  
 						<?php
-                            $connection = mysqli_connect('localhost', 'root', '');
+                            $connection = mysql_connect('localhost', 'root', '');
                                 if ($connection->connect_errno) {
                                     echo ("SQL can't connect to PHP". $connection->connect_error);
                                     exit();
                                 }	
 
-                                $SelectDB = mysqli_select_db($connection, "Alubijid");
+                                $SelectDB = mysql_select_db('Alubijid');
                                     if(!$SelectDB)
-                                        die("Database Selection Failed: ".mysqli_error($connection));
+                                        die("Database Selection Failed: ".mysql_error($connection));
 
                                 $query = 'SELECT r.Resident_ID, r.Last_Name, r.First_Name, r.Age, n.Nutrition_Description FROM Resident as r, Nutritional_Status as n WHERE Age BETWEEN 0 AND 5 AND r.Nutrition_ID = n.Nutrition_ID;';
-                                $result = mysqli_query($connection, $query)
+                                $result = mysql_query($query)
                                 or die ('query error');
 
                                  if(!$query)
-                                     ('Error in query: ' . mysqli_error($query));
+                                     ('Error in query: ' . mysql_error($query));
 
-                                if(mysqli_num_rows ($result)>0){
+                                if(mysql_num_rows ($result)>0){
                                         echo'<div class="table-responsive">';
                                         echo'<table class="table">';
                                         echo"<thead>
@@ -96,7 +101,7 @@
                                                 </tr>
                                             </thead>";
 
-                                    while($row = mysqli_fetch_row($result)){
+                                    while($row = mysql_fetch_row($result)){
                                         echo"<tbody>
                                                 <tr>
                                                     <td>$row[0]</td>
@@ -133,11 +138,18 @@
                                         </table>";
                                 }
 
-                                mysqli_close($connection);
+                                mysql_close($connection);
                             ?>	
                     </div>
                 </div>
             </div>
+			</font>
+			<br></br><br></br><br></br>
+			<br></br><br></br><br></br>
+			<br></br><br></br><br></br>
+			<br></br><br></br><br></br>
+			<br></br><br></br><br></br>
+			<br></br><br></br>
         </div>
         <!-- /#page-content-wrapper -->
 
