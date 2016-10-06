@@ -49,7 +49,9 @@ ADD otherOrg INT constraint fk foreign key references other_comm_orgs(other_ID);
 
 
 
-Other_comm_Org{
+
+
+Other_comm_Orgs{
     Other_ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     Other_Name VARCHAR(50) NOT NULL
 }

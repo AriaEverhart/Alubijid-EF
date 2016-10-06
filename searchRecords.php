@@ -63,7 +63,7 @@
                             $firstName =    $_POST['fName'];
                             $age =          $_POST['age'];
                         
-                            $connection = mysqli_connect('localhost', 'Issa', 'alcordo123');
+                            $connection = mysqli_connect('localhost', 'root', '');
                                 if ($connection->connect_errno) {
                                     echo ("SQL can't connect to PHP". $connection->connect_error);
                                     exit();

@@ -11,7 +11,7 @@
 
 
         
-    $connection = mysqli_connect('localhost', 'Issa', 'alcordo123');
+    $connection = mysqli_connect('localhost', 'root', '');
 
 
     $SelectDB = mysqli_select_db($connection, "Alubijid");
